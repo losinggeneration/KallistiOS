@@ -197,9 +197,12 @@ int arch_main() {
     /* Run ctors */
 #if __GNUC__ < 4
     arch_ctors();
-#else
+#elif __GNUC__ < 5
     __verify_newlib_patch();
     init();
+#else
+    __verify_newlib_patch();
+    _init();
 #endif
 
     /* Call the user's main function */
@@ -225,8 +228,10 @@ void arch_shutdown() {
 
 #if __GNUC__ < 4
     arch_dtors();
-#else
+#elif __GNUC__ < 5
     fini();
+#else
+    _fini();
 #endif
 
     dbglog(DBG_CRITICAL, "arch: shutting down kernel\n");
