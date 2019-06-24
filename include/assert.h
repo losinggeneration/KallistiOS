@@ -26,7 +26,6 @@ __BEGIN_DECLS
    error message. */
 #define _assert(e) assert(e)
 
-/* __FUNCTION__ is not ANSI, it's GCC, but we depend on GCC anyway.. */
 #ifdef NDEBUG
 #   define assert(e) ((void)0)
 #   define assert_msg(e, m) ((void)0)
@@ -42,7 +41,7 @@ __BEGIN_DECLS
     \param  e               A value or expression to be evaluated as true or
                             false.
 */
-#   define assert(e)        ((e) ? (void)0 : __assert(__FILE__, __LINE__, #e, NULL, __FUNCTION__))
+#   define assert(e)        ((e) ? (void)0 : __assert(__FILE__, __LINE__, #e, NULL, __func__))
 
 /** \brief  assert() with a custom message.
 
@@ -53,7 +52,7 @@ __BEGIN_DECLS
                             false.
     \param  m               A message (const char *).
 */
-#   define assert_msg(e, m) ((e) ? (void)0 : __assert(__FILE__, __LINE__, #e, m, __FUNCTION__))
+#   define assert_msg(e, m) ((e) ? (void)0 : __assert(__FILE__, __LINE__, #e, m, __func__))
 #endif
 
 /* \cond */
