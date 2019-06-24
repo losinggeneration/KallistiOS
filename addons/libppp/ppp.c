@@ -363,6 +363,7 @@ void *ppp_main(void *arg) {
                                to make sure. */
                             expect = EXPECT_DATA;
                             /* Fall through... */
+                            __attribute__ ((fallthrough));
                         }
 
                     case EXPECT_DATA:

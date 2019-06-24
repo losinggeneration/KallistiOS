@@ -555,6 +555,7 @@ static int ipcp_handle_terminate_req(ppp_protocol_t *self,
             ipcp_state.resend_pkt = NULL;
             ipcp_state.resend_timeout = NULL;
             ipcp_state.state = PPP_STATE_STOPPING;
+            return -1;
 
         default:
             return -1;
